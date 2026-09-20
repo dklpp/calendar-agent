@@ -1,0 +1,30 @@
+[project]
+name = "calendar-agent"
+version = "0.1.0"
+description = "Voice-promptable dual-timezone calendar agent"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "python-multipart>=0.0.12",
+    "anthropic>=0.40",
+    "google-api-python-client>=2.150",
+    "google-auth-oauthlib>=1.2",
+    "google-auth-httplib2>=0.2",
+    "python-telegram-bot>=21.6",
+    "apscheduler>=3.10",
+    "python-dateutil>=2.9",
+    "httpx>=0.27",
+]
+
+[dependency-groups]
+dev = ["pytest>=8.3", "pytest-asyncio>=0.24", "time-machine>=2.15"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["costs_money: hits the Claude API; deselect with -m 'not costs_money'"]
+
+[tool.setuptools.packages.find]
+include = ["app*"]

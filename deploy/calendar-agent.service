@@ -1,0 +1,26 @@
+# Raspberry Pi systemd unit.
+#   sudo cp calendar-agent.service /etc/systemd/system/
+#   sudo systemctl enable --now calendar-agent
+[Unit]
+Description=Calendar Agent
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/calendar-agent/backend
+Environment="PATH=/home/pi/.local/bin:/usr/local/bin:/usr/bin:/bin"
+ExecStart=/home/pi/.local/bin/uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=10
+
+# The agent only ever needs its own directory.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=/home/pi/calendar-agent/backend
+
+[Install]
+WantedBy=multi-user.target

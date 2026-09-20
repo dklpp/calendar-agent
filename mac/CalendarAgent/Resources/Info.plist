@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key>
+    <string>CalendarAgent</string>
+    <key>CFBundleDisplayName</key>
+    <string>Calendar Agent</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.dklpp.calendaragent</string>
+    <key>CFBundleExecutable</key>
+    <string>CalendarAgent</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>0.1.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>14.0</string>
+    <!-- Menu bar only: no Dock icon, no window on launch. -->
+    <key>LSUIElement</key>
+    <true/>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Calendar Agent records your voice so you can book meetings by speaking.</string>
+    <!-- The backend is a plain-HTTP service on the local network. -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsLocalNetworking</key>
+        <true/>
+    </dict>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>Calendar Agent talks to the calendar service on your Raspberry Pi.</string>
+</dict>
+</plist>

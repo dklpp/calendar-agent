@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+config.local.toml
+credentials.json
+token.json
+*.db
+*.sqlite3
+.pytest_cache/
+models/*.bin
+audio_tmp/
+.DS_Store
+build/
+.build/
+*.xcuserstate
+xcuserdata/

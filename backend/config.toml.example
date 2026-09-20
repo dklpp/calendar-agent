@@ -1,0 +1,36 @@
+# Preferences. Copy to config.toml and edit. Safe to commit? No -- it is
+# gitignored as config.local.toml only; config.toml itself holds no secrets,
+# but keep calendar_id private if you use a shared calendar.
+
+primary_tz = "America/Toronto"
+secondary_tz = "Europe/Vilnius"
+default_duration_minutes = 60
+
+# Minutes before a meeting to send a Telegram reminder. Add more for a
+# second nudge, e.g. [1440, 60] for "a day before" and "an hour before".
+reminder_minutes = [60]
+
+# false = always ask before writing to the calendar (recommended).
+auto_confirm_unambiguous = false
+confirm_ttl_minutes = 30
+
+calendar_id = "primary"
+
+# whisper.cpp model size. "small" is the recommended start on a Pi 5;
+# "medium" is more accurate on Lithuanian but noticeably slower.
+whisper_model = "small"
+whisper_language = "auto"
+
+[working_hours]
+buffer_minutes = 15
+weekdays_only = true
+
+[working_hours.default]
+start = "09:00"
+end = "18:00"
+
+# A meeting pinned to Vilnius time gets judged against Vilnius hours, not
+# Toronto ones -- otherwise every Lithuanian meeting looks like it is at dawn.
+[working_hours.by_zone."Europe/Vilnius"]
+start = "09:00"
+end = "19:00"

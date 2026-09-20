@@ -1,0 +1,26 @@
+# Alternative to the systemd unit. Handy because it bundles ffmpeg and
+# whisper.cpp rather than relying on what happens to be on the Pi.
+services:
+  calendar-agent:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - ../backend/.env
+    volumes:
+      # Persist OAuth token, SQLite state, prefs and whisper models across
+      # rebuilds. Without this, every rebuild loses the Google login.
+      - ../backend/token.json:/app/token.json
+      - ../backend/credentials.json:/app/credentials.json:ro
+      - ../backend/config.toml:/app/config.toml:ro
+      - agent-data:/app/data
+      - whisper-models:/app/models
+    environment:
+      DATABASE_PATH: /app/data/calendar_agent.db
+
+volumes:
+  agent-data:
+  whisper-models:
