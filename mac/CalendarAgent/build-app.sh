@@ -21,5 +21,5 @@ cp "$HERE/Resources/Info.plist" "$APP/Contents/Info.plist"
 # signature of some kind, but not a paid Developer ID.
 codesign --force --deep --sign - "$APP"
 
-echo "Built $APP"
+echo "Built : $APP"
 echo "Run it with: open '$APP'"
